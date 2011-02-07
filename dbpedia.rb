@@ -1,9 +1,6 @@
-#Dir.chdir("/Users/stewartrobinson/Documents/geodbpedia") 
-#file = File.new("geo_coordinates_en.nq", "r")
 file = File.new("ARGV[0]", "r")
 
 @places = {}
-last_place = "NOWHERE"
 while (line = file.gets)
 
   # Item name
