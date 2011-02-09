@@ -4,7 +4,7 @@ file = File.new("ARGV[0]", "r")
 while (line = file.gets)
 
   # Item name
-  line = line.gsub("\^",">")
+  line.gsub("\^",">")
   items = line.split(/>/)
   items[0].gsub!("<","")
   items[0].gsub!(/ /,"")
@@ -30,7 +30,7 @@ while (line = file.gets)
     @places[place_name][:long] = items[2]
     
     # This next code line is a savage hack because I have to go out!
-    puts "#{place_name}, #@places[place_name][:lat], #@places[place_name][:long]"
+    puts place_name + "," + @places[place_name][:lat] + "," + @places[place_name][:long]
   end
 
 end
