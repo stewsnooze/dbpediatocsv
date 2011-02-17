@@ -8,9 +8,10 @@ while (line = file.gets)
   # Item name
   line.gsub!("\^",">")
   items = line.split(/>/)
-  items[0].gsub!("<","")
-  items[0].gsub!(/ /,"")
-  items[0].gsub!("http://dbpedia.org/resource/","")
+  ["<",  "/ /",  "http://dbpedia.org/resource"].each do |pattern|
+    items[0].gsub!(pattern, "")
+  end
+  
   place_name = items[0]
 
   if !@places.has_key?(place_name)
