@@ -8,7 +8,7 @@ while (line = file.gets)
   # Item name
   line.gsub!("\^",">")
   items = line.split(/>/)
-  ["<",  "/ /",  "http://dbpedia.org/resource"].each do |pattern|
+  ["<",  "/ /",  "http://dbpedia.org/resource/"].each do |pattern|
     items[0].gsub!(pattern, "")
   end
   
