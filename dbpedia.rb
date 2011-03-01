@@ -1,11 +1,11 @@
 file = File.new("ARGV[0]", "r")
-
 @places = {}
+
 while (line = file.gets)
 
   # Item name
-  line.gsub!("\^",">")
-  items = line.split(/>/)
+  items = line.gsub!("\^",">").split(/>/)
+
   ["<",  "/ /",  "http://dbpedia.org/resource"].each do |pattern|
     items[0].gsub!(pattern, "")
   end
@@ -20,19 +20,13 @@ while (line = file.gets)
 
   items[1].gsub!("<","")
   items[1].gsub!(/ /,"")
-
-  if items[1] == "http://www.w3.org/2003/01/geo/wgs84_pos#lat"
-    items[2].gsub!(/"/,"")
-    @places[place_name][:lat] = items[2]
+  
+  %w(lat long).each do |coord|
+    if items[1] == "http://www.w3.org/2003/01/geo/wgs84_pos##{coord}"
+      items[2].gsub!(/"/,"")
+      @places[place_name][coord.to_sym] = items[2]
+      puts place_name + "," + @places[place_name][:lat] + "," + @places[place_name][:long] if coord == 'long'
+    end
   end
-
-  if items[1] == "http://www.w3.org/2003/01/geo/wgs84_pos#long"
-    items[2].gsub!(/"/,"")
-    @places[place_name][:long] = items[2]
-    
-    # This next code line is a savage hack because I have to go out!
-    puts place_name + "," + @places[place_name][:lat] + "," + @places[place_name][:long]
-  end
-
 end
 file.close
