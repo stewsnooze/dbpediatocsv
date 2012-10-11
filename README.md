@@ -12,6 +12,4 @@ d.process
 puts d.size
 
 d.each(&:inspect)
-
 ```
-
