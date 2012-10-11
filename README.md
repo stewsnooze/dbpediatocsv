@@ -7,6 +7,7 @@ Now with brand brain-spanking OOP goodness:
 ```ruby 
 
 d = Dbpedioid.new('pnd_en.nq')
+
 d.process
 
 puts d.size
