@@ -77,6 +77,7 @@ class Dbpedioid
   
   def <<(value)
     @values << value
+    self
   end
   
   def size
